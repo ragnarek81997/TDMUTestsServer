@@ -13,6 +13,19 @@ namespace TDMUTestsServer.Domain.Interfaces.Infrastructure
     {
         private ApplicationDbContext _applicationDbContext = null;
 
+        public ApplicationDbContext ApplicationDbContex
+        {
+            get
+            {
+                return _applicationDbContext;
+            }
+        }
+
+        public GenericRepository()
+        {
+            _applicationDbContext = new ApplicationDbContext();
+        }
+
         public GenericRepository(ApplicationDbContext applicationDbContext)
         {
             _applicationDbContext = applicationDbContext;
@@ -402,7 +415,7 @@ namespace TDMUTestsServer.Domain.Interfaces.Infrastructure
 
         public void Dispose()
         {
-            //_applicationDbContext?.Dispose();
+            _applicationDbContext?.Dispose();
         }
     }
 }

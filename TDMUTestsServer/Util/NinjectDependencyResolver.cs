@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using TDMUTestsServer.Domain.Entities.Infrastructure;
+using Ninject.Web.Common;
 
 namespace TDMUTestsServer.Web.Util
 {
@@ -35,12 +36,14 @@ namespace TDMUTestsServer.Web.Util
             //configuration
 
             // repository
-            //kernel.Bind<IUserRepository>().To<UserRepository>();
+            kernel.Bind<IUserRepository>().To<UserRepository>();
 
             // service
-            //kernel.Bind<IUserService>().To<UserService>();
-            //kernel.Bind<IAccountService>().To<AccountService>();
-            
+            kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IAccountService>().To<AccountService>();
+
+            kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
+
         }
     }
 }

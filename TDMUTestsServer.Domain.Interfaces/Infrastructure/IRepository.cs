@@ -10,6 +10,8 @@ namespace TDMUTestsServer.Domain.Interfaces.Infrastructure
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : class, IBaseEntity
     {
+        ApplicationDbContext ApplicationDbContex { get; }
+
         #region COUNT
         Task<DatabaseResult<int>> CountAsync(Expression<Func<TEntity, bool>> where = null);
         #endregion

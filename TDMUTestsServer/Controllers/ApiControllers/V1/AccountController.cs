@@ -31,17 +31,13 @@ namespace TDMUTestsServer.Web.Controllers.ApiControllers.V1
     [RoutePrefix("api/v1/account")]
     public class AccountController : CustomApiController
     {
-        private readonly ApplicationDbContext _applicationDbContext;
-
         private ApplicationUserManager _userManager;
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IAccountService _accountService;
 
-        public AccountController()
+        public AccountController(IAccountService accountService)
         {
-            _applicationDbContext = new ApplicationDbContext();
-
-            _accountService = new AccountService(_applicationDbContext);
+            _accountService = accountService;
         }
 
         public AccountController(ApplicationUserManager userManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)

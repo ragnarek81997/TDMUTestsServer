@@ -23,11 +23,10 @@ namespace TDMUTestsServer.Infrastructure.Business
 
         private readonly IUserRepository _userRepository;
 
-        public UserService(ApplicationDbContext applicationDbContext)
+        public UserService(IUserRepository userRepository, ApplicationDbContext applicationDbContext)
         {
+            _userRepository = userRepository;
             _applicationDbContext = applicationDbContext;
-
-            _userRepository = new UserRepository(_applicationDbContext);
         }
 
         #region initialization
